@@ -1,0 +1,455 @@
+{
+  "tasks": [
+    {
+      "id": "4ae29ebc-7bcf-4898-bb06-93ed1b40ed10",
+      "name": "[Phase1-1] Next.js 15 프로젝트 스캐폴딩 및 기본 폴더 구조 생성",
+      "description": "create-next-app으로 Next.js 15(App Router, TypeScript, src/ 디렉터리 사용) 프로젝트를 스캐폴딩하고 src/app, src/components, src/lib 폴더 구조를 확정한다. 기존 src/components/Example.tsx는 그대로 유지한다.",
+      "notes": "기존 src/components/Example.tsx를 덮어쓰거나 삭제하지 않는다. package.json이 이미 존재하면 재생성하지 않고 사용자에게 알린다.",
+      "status": "pending",
+      "dependencies": [],
+      "createdAt": "2026-08-13T00:27:58.430Z",
+      "updatedAt": "2026-08-13T00:27:58.430Z",
+      "relatedFiles": [
+        {
+          "path": "docs/ROADMAP.md",
+          "type": "REFERENCE",
+          "description": "Phase1 작업 항목/완료 기준"
+        },
+        {
+          "path": "package.json",
+          "type": "CREATE",
+          "description": "Next.js 프로젝트 설정 파일"
+        },
+        {
+          "path": "src/app",
+          "type": "CREATE",
+          "description": "App Router 루트"
+        },
+        {
+          "path": "src/components/Example.tsx",
+          "type": "REFERENCE",
+          "description": "기존 컴포넌트 템플릿 스타일 참고"
+        }
+      ],
+      "implementationGuide": "pseudocode:\n1. npx create-next-app@latest . --typescript --app --src-dir --eslint (기존 src/components 보존 여부 확인 후 진행)\n2. src/lib 폴더 생성(빈 폴더 + .gitkeep 또는 첫 유틸 파일)\n3. npm run dev로 로컬 서버 구동 확인",
+      "verificationCriteria": "npm run dev로 로컬 서버가 정상 구동되고, src/app, src/components, src/lib 폴더 구조가 존재하며, 기존 Example.tsx가 보존되어야 한다.",
+      "analysisResult": "docs/PRD.md와 docs/ROADMAP.md 기반 Notion CMS 개인 개발 블로그 구축. Next.js 15(App Router, src/ 디렉터리) + TypeScript + Tailwind CSS + shadcn/ui + @notionhq/client + Vercel 스택. 현재 저장소는 package.json/app/lib이 없는 원점 상태이며 src/components/Example.tsx와 .claude/commands/add-component.md 템플릿만 존재한다. ROADMAP.md의 Phase1(초기 설정)→Phase2(공통 모듈)→Phase3(핵심 기능)→Phase4(부가 기능)→Phase5(최적화/배포) 순서를 절대 건너뛰지 않고, 각 Phase의 완료 기준을 태스크 검증 기준으로 그대로 사용한다. Notion 목록/필터 API는 항상 Status=발행됨 필터를 적용해 초안 노출을 막는다. 컴포넌트는 기존 add-component.md 템플릿(interface {Name}Props + 함수형 컴포넌트, Tailwind 클래스)을 재사용한다. shrimp-rules.md의 MVP 제외 범위(댓글/좋아요/다크모드/i18n/어드민)는 구현하지 않는다. 총 15개 태스크를 두 배치로 제출한다: 1차 배치(Phase1~3, 9개), 2차 배치(Phase4~5, 6개)."
+    },
+    {
+      "id": "3531e64e-7286-49d5-8743-bb472af348ac",
+      "name": "[Phase1-2] Tailwind CSS + shadcn/ui 설정",
+      "description": "Tailwind CSS를 설정하고 shadcn/ui를 초기화하여 이후 컴포넌트 개발에 사용할 수 있도록 한다.",
+      "notes": "MVP 제외 범위(다크모드)를 shadcn init 과정에서 임의로 활성화하지 않는다.",
+      "status": "pending",
+      "dependencies": [
+        {
+          "taskId": "4ae29ebc-7bcf-4898-bb06-93ed1b40ed10"
+        }
+      ],
+      "createdAt": "2026-08-13T00:27:58.430Z",
+      "updatedAt": "2026-08-13T00:27:58.430Z",
+      "relatedFiles": [
+        {
+          "path": "tailwind.config.ts",
+          "type": "CREATE",
+          "description": "Tailwind 설정"
+        },
+        {
+          "path": "components.json",
+          "type": "CREATE",
+          "description": "shadcn/ui 설정"
+        }
+      ],
+      "implementationGuide": "pseudocode:\n1. Tailwind CSS 설치 및 tailwind.config 설정(create-next-app 시 --tailwind 옵션 사용 가능)\n2. npx shadcn@latest init 으로 shadcn/ui 초기화 (components.json 생성)\n3. 샘플 shadcn 컴포넌트(Button 등) 1개 추가해 정상 렌더링 확인",
+      "verificationCriteria": "Tailwind 클래스가 페이지에 정상 적용되고, shadcn/ui 컴포넌트 1개가 에러 없이 렌더링되어야 한다.",
+      "analysisResult": "docs/PRD.md와 docs/ROADMAP.md 기반 Notion CMS 개인 개발 블로그 구축. Next.js 15(App Router, src/ 디렉터리) + TypeScript + Tailwind CSS + shadcn/ui + @notionhq/client + Vercel 스택. 현재 저장소는 package.json/app/lib이 없는 원점 상태이며 src/components/Example.tsx와 .claude/commands/add-component.md 템플릿만 존재한다. ROADMAP.md의 Phase1(초기 설정)→Phase2(공통 모듈)→Phase3(핵심 기능)→Phase4(부가 기능)→Phase5(최적화/배포) 순서를 절대 건너뛰지 않고, 각 Phase의 완료 기준을 태스크 검증 기준으로 그대로 사용한다. Notion 목록/필터 API는 항상 Status=발행됨 필터를 적용해 초안 노출을 막는다. 컴포넌트는 기존 add-component.md 템플릿(interface {Name}Props + 함수형 컴포넌트, Tailwind 클래스)을 재사용한다. shrimp-rules.md의 MVP 제외 범위(댓글/좋아요/다크모드/i18n/어드민)는 구현하지 않는다. 총 15개 태스크를 두 배치로 제출한다: 1차 배치(Phase1~3, 9개), 2차 배치(Phase4~5, 6개)."
+    },
+    {
+      "id": "fd04ba4d-9f7f-4ac0-92a2-6654d821ae43",
+      "name": "[Phase1-3] Notion API 연동 환경 설정",
+      "description": "@notionhq/client를 설치하고 NOTION_API_KEY/NOTION_DATABASE_ID 환경 변수를 설정하며, Notion 데이터베이스(PRD 4번 속성 구조)와 Integration이 정상 연결되는지 테스트 스크립트로 확인한다.",
+      "notes": "API 키를 코드나 커밋에 하드코딩하지 않는다. Notion DB의 속성명(Title/Category/Tags/Published/Status/Content)이 PRD 4번과 일치하는지 확인한다.",
+      "status": "pending",
+      "dependencies": [
+        {
+          "taskId": "4ae29ebc-7bcf-4898-bb06-93ed1b40ed10"
+        }
+      ],
+      "createdAt": "2026-08-13T00:27:58.430Z",
+      "updatedAt": "2026-08-13T00:27:58.430Z",
+      "relatedFiles": [
+        {
+          "path": "docs/PRD.md",
+          "type": "REFERENCE",
+          "description": "Notion 데이터베이스 구조(4번)"
+        },
+        {
+          "path": ".env.local",
+          "type": "CREATE",
+          "description": "NOTION_API_KEY, NOTION_DATABASE_ID"
+        },
+        {
+          "path": "shrimp-rules.md",
+          "type": "REFERENCE",
+          "description": "Notion 연동 규칙(환경변수, 필터)"
+        }
+      ],
+      "implementationGuide": "pseudocode:\n1. npm install @notionhq/client\n2. .env.local에 NOTION_API_KEY, NOTION_DATABASE_ID 추가 (.env.local은 .gitignore에 포함되어야 함)\n3. 임시 테스트 스크립트 또는 API 라우트에서 notion.databases.query({database_id}) 호출해 200 응답 확인 후 스크립트 제거 여부 결정",
+      "verificationCriteria": "Notion API 키로 데이터베이스 조회가 200으로 성공하고, 환경변수가 .env.local에만 존재하며 .gitignore에 포함되어야 한다.",
+      "analysisResult": "docs/PRD.md와 docs/ROADMAP.md 기반 Notion CMS 개인 개발 블로그 구축. Next.js 15(App Router, src/ 디렉터리) + TypeScript + Tailwind CSS + shadcn/ui + @notionhq/client + Vercel 스택. 현재 저장소는 package.json/app/lib이 없는 원점 상태이며 src/components/Example.tsx와 .claude/commands/add-component.md 템플릿만 존재한다. ROADMAP.md의 Phase1(초기 설정)→Phase2(공통 모듈)→Phase3(핵심 기능)→Phase4(부가 기능)→Phase5(최적화/배포) 순서를 절대 건너뛰지 않고, 각 Phase의 완료 기준을 태스크 검증 기준으로 그대로 사용한다. Notion 목록/필터 API는 항상 Status=발행됨 필터를 적용해 초안 노출을 막는다. 컴포넌트는 기존 add-component.md 템플릿(interface {Name}Props + 함수형 컴포넌트, Tailwind 클래스)을 재사용한다. shrimp-rules.md의 MVP 제외 범위(댓글/좋아요/다크모드/i18n/어드민)는 구현하지 않는다. 총 15개 태스크를 두 배치로 제출한다: 1차 배치(Phase1~3, 9개), 2차 배치(Phase4~5, 6개)."
+    },
+    {
+      "id": "a3fa25e3-474f-41f2-91ea-db2dcf12a3be",
+      "name": "[Phase2-1] Post/Category 타입 정의",
+      "description": "Notion 데이터베이스 속성(Title/Category/Tags/Published/Status/Content)과 1:1 매핑되는 Post, Category TypeScript 타입을 src/lib 또는 src/types에 정의한다.",
+      "notes": "이후 fetchPages/fetchPageContent의 반환 타입으로 사용되므로 필드 누락이 없어야 한다.",
+      "status": "pending",
+      "dependencies": [
+        {
+          "taskId": "fd04ba4d-9f7f-4ac0-92a2-6654d821ae43"
+        }
+      ],
+      "createdAt": "2026-08-13T00:27:58.430Z",
+      "updatedAt": "2026-08-13T00:27:58.430Z",
+      "relatedFiles": [
+        {
+          "path": "docs/PRD.md",
+          "type": "REFERENCE",
+          "description": "Notion DB 구조 4번"
+        },
+        {
+          "path": "src/lib/types.ts",
+          "type": "CREATE",
+          "description": "Post, Category 타입 정의"
+        }
+      ],
+      "implementationGuide": "pseudocode:\ninterface Post { id: string; title: string; category: string; tags: string[]; published: string; status: '초안' | '발행됨'; slug: string }\ntype Category = string (또는 PRD 예시 기반 union)",
+      "verificationCriteria": "Post/Category 타입이 PRD 4번의 6개 속성을 모두 반영하고, 타입 에러 없이 빌드되어야 한다.",
+      "analysisResult": "docs/PRD.md와 docs/ROADMAP.md 기반 Notion CMS 개인 개발 블로그 구축. Next.js 15(App Router, src/ 디렉터리) + TypeScript + Tailwind CSS + shadcn/ui + @notionhq/client + Vercel 스택. 현재 저장소는 package.json/app/lib이 없는 원점 상태이며 src/components/Example.tsx와 .claude/commands/add-component.md 템플릿만 존재한다. ROADMAP.md의 Phase1(초기 설정)→Phase2(공통 모듈)→Phase3(핵심 기능)→Phase4(부가 기능)→Phase5(최적화/배포) 순서를 절대 건너뛰지 않고, 각 Phase의 완료 기준을 태스크 검증 기준으로 그대로 사용한다. Notion 목록/필터 API는 항상 Status=발행됨 필터를 적용해 초안 노출을 막는다. 컴포넌트는 기존 add-component.md 템플릿(interface {Name}Props + 함수형 컴포넌트, Tailwind 클래스)을 재사용한다. shrimp-rules.md의 MVP 제외 범위(댓글/좋아요/다크모드/i18n/어드민)는 구현하지 않는다. 총 15개 태스크를 두 배치로 제출한다: 1차 배치(Phase1~3, 9개), 2차 배치(Phase4~5, 6개)."
+    },
+    {
+      "id": "87534521-3f3a-45e4-beea-1e0c3d058a1c",
+      "name": "[Phase2-2] fetchPages/fetchPageContent 공통 함수 구현",
+      "description": "Notion 데이터베이스에서 발행된(Status=발행됨) 글 목록을 가져오는 fetchPages와 특정 페이지의 본문 블록을 가져오는 fetchPageContent 함수를 구현한다.",
+      "notes": "Status=발행됨 필터를 누락하면 초안이 노출되므로 반드시 포함해야 한다(shrimp-rules.md 금지 사항).",
+      "status": "pending",
+      "dependencies": [
+        {
+          "taskId": "a3fa25e3-474f-41f2-91ea-db2dcf12a3be"
+        }
+      ],
+      "createdAt": "2026-08-13T00:27:58.430Z",
+      "updatedAt": "2026-08-13T00:27:58.430Z",
+      "relatedFiles": [
+        {
+          "path": "src/lib/notion.ts",
+          "type": "CREATE",
+          "description": "fetchPages, fetchPageContent 구현"
+        },
+        {
+          "path": "shrimp-rules.md",
+          "type": "REFERENCE",
+          "description": "Status=발행됨 필터 필수 규칙"
+        }
+      ],
+      "implementationGuide": "pseudocode:\nfunction fetchPages(): Post[] { notion.databases.query({database_id, filter: {property:'Status', select:{equals:'발행됨'}}}) 결과를 Post[]로 매핑 }\nfunction fetchPageContent(pageId: string) { notion.blocks.children.list({block_id: pageId}) 결과 반환 }\n캐싱/ISR 전략은 Phase5에서 적용하므로 이 단계에서는 함수 시그니처와 기본 호출만 구현한다.",
+      "verificationCriteria": "fetchPages가 발행됨 상태의 글만 반환하고, fetchPageContent가 특정 페이지의 블록 배열을 정상 반환해야 한다(타입 에러 없이 빌드 성공).",
+      "analysisResult": "docs/PRD.md와 docs/ROADMAP.md 기반 Notion CMS 개인 개발 블로그 구축. Next.js 15(App Router, src/ 디렉터리) + TypeScript + Tailwind CSS + shadcn/ui + @notionhq/client + Vercel 스택. 현재 저장소는 package.json/app/lib이 없는 원점 상태이며 src/components/Example.tsx와 .claude/commands/add-component.md 템플릿만 존재한다. ROADMAP.md의 Phase1(초기 설정)→Phase2(공통 모듈)→Phase3(핵심 기능)→Phase4(부가 기능)→Phase5(최적화/배포) 순서를 절대 건너뛰지 않고, 각 Phase의 완료 기준을 태스크 검증 기준으로 그대로 사용한다. Notion 목록/필터 API는 항상 Status=발행됨 필터를 적용해 초안 노출을 막는다. 컴포넌트는 기존 add-component.md 템플릿(interface {Name}Props + 함수형 컴포넌트, Tailwind 클래스)을 재사용한다. shrimp-rules.md의 MVP 제외 범위(댓글/좋아요/다크모드/i18n/어드민)는 구현하지 않는다. 총 15개 태스크를 두 배치로 제출한다: 1차 배치(Phase1~3, 9개), 2차 배치(Phase4~5, 6개)."
+    },
+    {
+      "id": "3e5164c4-3b24-4e5d-b6a3-b6d93a6240cb",
+      "name": "[Phase2-3] Header/Footer/Card 공통 컴포넌트 구현",
+      "description": "기존 src/components/Example.tsx 및 .claude/commands/add-component.md 템플릿 스타일(interface {Name}Props + 함수형 컴포넌트 + Tailwind)을 따라 Header, Footer, Card 컴포넌트를 구현한다.",
+      "notes": "새로운 컴포넌트 작성 패턴을 발명하지 않고 기존 add-component.md 템플릿을 재사용한다.",
+      "status": "pending",
+      "dependencies": [
+        {
+          "taskId": "3531e64e-7286-49d5-8743-bb472af348ac"
+        }
+      ],
+      "createdAt": "2026-08-13T00:27:58.430Z",
+      "updatedAt": "2026-08-13T00:27:58.430Z",
+      "relatedFiles": [
+        {
+          "path": ".claude/commands/add-component.md",
+          "type": "REFERENCE",
+          "description": "컴포넌트 생성 템플릿"
+        },
+        {
+          "path": "src/components/Example.tsx",
+          "type": "REFERENCE",
+          "description": "기존 컴포넌트 스타일"
+        },
+        {
+          "path": "src/components/Header.tsx",
+          "type": "CREATE",
+          "description": "헤더 컴포넌트"
+        },
+        {
+          "path": "src/components/Footer.tsx",
+          "type": "CREATE",
+          "description": "푸터 컴포넌트"
+        },
+        {
+          "path": "src/components/Card.tsx",
+          "type": "CREATE",
+          "description": "글 카드 컴포넌트"
+        }
+      ],
+      "implementationGuide": "pseudocode:\n각 컴포넌트: interface {Name}Props {...} / export default function {Name}(props) { return <... className=\"...\"> }\nCard는 Post 타입을 props로 받아 제목/카테고리/발행일을 표시",
+      "verificationCriteria": "Header, Footer, Card 컴포넌트가 각각 독립적으로 렌더링 가능하고 타입 에러 없이 빌드되어야 한다.",
+      "analysisResult": "docs/PRD.md와 docs/ROADMAP.md 기반 Notion CMS 개인 개발 블로그 구축. Next.js 15(App Router, src/ 디렉터리) + TypeScript + Tailwind CSS + shadcn/ui + @notionhq/client + Vercel 스택. 현재 저장소는 package.json/app/lib이 없는 원점 상태이며 src/components/Example.tsx와 .claude/commands/add-component.md 템플릿만 존재한다. ROADMAP.md의 Phase1(초기 설정)→Phase2(공통 모듈)→Phase3(핵심 기능)→Phase4(부가 기능)→Phase5(최적화/배포) 순서를 절대 건너뛰지 않고, 각 Phase의 완료 기준을 태스크 검증 기준으로 그대로 사용한다. Notion 목록/필터 API는 항상 Status=발행됨 필터를 적용해 초안 노출을 막는다. 컴포넌트는 기존 add-component.md 템플릿(interface {Name}Props + 함수형 컴포넌트, Tailwind 클래스)을 재사용한다. shrimp-rules.md의 MVP 제외 범위(댓글/좋아요/다크모드/i18n/어드민)는 구현하지 않는다. 총 15개 태스크를 두 배치로 제출한다: 1차 배치(Phase1~3, 9개), 2차 배치(Phase4~5, 6개)."
+    },
+    {
+      "id": "f3c4ea76-2707-4b97-9b40-5333a8889cdf",
+      "name": "[Phase3-1] 글 목록 페이지(/) 구현",
+      "description": "홈 화면에서 fetchPages를 호출해 발행된 글 목록을 최신순(Published 기준)으로 Card 컴포넌트를 사용해 렌더링한다.",
+      "notes": "",
+      "status": "pending",
+      "dependencies": [
+        {
+          "taskId": "87534521-3f3a-45e4-beea-1e0c3d058a1c"
+        },
+        {
+          "taskId": "3e5164c4-3b24-4e5d-b6a3-b6d93a6240cb"
+        }
+      ],
+      "createdAt": "2026-08-13T00:27:58.430Z",
+      "updatedAt": "2026-08-13T00:27:58.430Z",
+      "relatedFiles": [
+        {
+          "path": "src/app/page.tsx",
+          "type": "CREATE",
+          "description": "홈 글 목록 페이지"
+        }
+      ],
+      "implementationGuide": "pseudocode:\nasync function HomePage() { const posts = await fetchPages(); posts.sort by published desc; return posts.map(p => <Card key={p.id} post={p} />) }",
+      "verificationCriteria": "홈 화면에서 발행된 글 목록이 최신순으로 표시되어야 한다.",
+      "analysisResult": "docs/PRD.md와 docs/ROADMAP.md 기반 Notion CMS 개인 개발 블로그 구축. Next.js 15(App Router, src/ 디렉터리) + TypeScript + Tailwind CSS + shadcn/ui + @notionhq/client + Vercel 스택. 현재 저장소는 package.json/app/lib이 없는 원점 상태이며 src/components/Example.tsx와 .claude/commands/add-component.md 템플릿만 존재한다. ROADMAP.md의 Phase1(초기 설정)→Phase2(공통 모듈)→Phase3(핵심 기능)→Phase4(부가 기능)→Phase5(최적화/배포) 순서를 절대 건너뛰지 않고, 각 Phase의 완료 기준을 태스크 검증 기준으로 그대로 사용한다. Notion 목록/필터 API는 항상 Status=발행됨 필터를 적용해 초안 노출을 막는다. 컴포넌트는 기존 add-component.md 템플릿(interface {Name}Props + 함수형 컴포넌트, Tailwind 클래스)을 재사용한다. shrimp-rules.md의 MVP 제외 범위(댓글/좋아요/다크모드/i18n/어드민)는 구현하지 않는다. 총 15개 태스크를 두 배치로 제출한다: 1차 배치(Phase1~3, 9개), 2차 배치(Phase4~5, 6개)."
+    },
+    {
+      "id": "609e1a27-c319-4e31-9f13-c863ffd6dae2",
+      "name": "[Phase3-2] 글 상세 페이지 및 Notion 블록 렌더링",
+      "description": "/posts/[slug] 경로에서 fetchPageContent로 본문 블록을 가져와 텍스트/이미지/코드 블록 타입을 우선 지원하는 렌더러로 표시한다.",
+      "notes": "지원하지 않는 블록 타입은 이후 점진적으로 확장(PRD 9번 리스크 대응), 이번 단계에서는 텍스트/이미지/코드만 우선 처리.",
+      "status": "pending",
+      "dependencies": [
+        {
+          "taskId": "87534521-3f3a-45e4-beea-1e0c3d058a1c"
+        }
+      ],
+      "createdAt": "2026-08-13T00:27:58.430Z",
+      "updatedAt": "2026-08-13T00:27:58.430Z",
+      "relatedFiles": [
+        {
+          "path": "src/app/posts/[slug]/page.tsx",
+          "type": "CREATE",
+          "description": "글 상세 페이지"
+        }
+      ],
+      "implementationGuide": "pseudocode:\nasync function PostPage({params}) { const post = find by slug; const blocks = await fetchPageContent(post.id); return blocks.map(renderBlock) }\nfunction renderBlock(block) { switch(block.type){ case 'paragraph': ...; case 'image': ...; case 'code': ... } }",
+      "verificationCriteria": "상세 페이지에서 텍스트/이미지/코드 블록이 깨지지 않고 렌더링되어야 한다.",
+      "analysisResult": "docs/PRD.md와 docs/ROADMAP.md 기반 Notion CMS 개인 개발 블로그 구축. Next.js 15(App Router, src/ 디렉터리) + TypeScript + Tailwind CSS + shadcn/ui + @notionhq/client + Vercel 스택. 현재 저장소는 package.json/app/lib이 없는 원점 상태이며 src/components/Example.tsx와 .claude/commands/add-component.md 템플릿만 존재한다. ROADMAP.md의 Phase1(초기 설정)→Phase2(공통 모듈)→Phase3(핵심 기능)→Phase4(부가 기능)→Phase5(최적화/배포) 순서를 절대 건너뛰지 않고, 각 Phase의 완료 기준을 태스크 검증 기준으로 그대로 사용한다. Notion 목록/필터 API는 항상 Status=발행됨 필터를 적용해 초안 노출을 막는다. 컴포넌트는 기존 add-component.md 템플릿(interface {Name}Props + 함수형 컴포넌트, Tailwind 클래스)을 재사용한다. shrimp-rules.md의 MVP 제외 범위(댓글/좋아요/다크모드/i18n/어드민)는 구현하지 않는다. 총 15개 태스크를 두 배치로 제출한다: 1차 배치(Phase1~3, 9개), 2차 배치(Phase4~5, 6개)."
+    },
+    {
+      "id": "f043db2f-c653-4fa9-823d-5ff93460733a",
+      "name": "[Phase3-3] 존재하지 않는 slug 404 처리",
+      "description": "존재하지 않는 slug로 /posts/[slug]에 접근 시 Next.js notFound()를 호출해 404 페이지를 표시한다.",
+      "notes": "",
+      "status": "pending",
+      "dependencies": [
+        {
+          "taskId": "609e1a27-c319-4e31-9f13-c863ffd6dae2"
+        }
+      ],
+      "createdAt": "2026-08-13T00:27:58.430Z",
+      "updatedAt": "2026-08-13T00:27:58.430Z",
+      "relatedFiles": [
+        {
+          "path": "src/app/posts/[slug]/page.tsx",
+          "type": "TO_MODIFY",
+          "description": "404 처리 로직 추가"
+        }
+      ],
+      "implementationGuide": "pseudocode:\nif (!post) { notFound(); } // next/navigation의 notFound 사용",
+      "verificationCriteria": "존재하지 않는 slug 접근 시 404 상태와 함께 Next.js 기본/커스텀 404 화면이 표시되어야 한다.",
+      "analysisResult": "docs/PRD.md와 docs/ROADMAP.md 기반 Notion CMS 개인 개발 블로그 구축. Next.js 15(App Router, src/ 디렉터리) + TypeScript + Tailwind CSS + shadcn/ui + @notionhq/client + Vercel 스택. 현재 저장소는 package.json/app/lib이 없는 원점 상태이며 src/components/Example.tsx와 .claude/commands/add-component.md 템플릿만 존재한다. ROADMAP.md의 Phase1(초기 설정)→Phase2(공통 모듈)→Phase3(핵심 기능)→Phase4(부가 기능)→Phase5(최적화/배포) 순서를 절대 건너뛰지 않고, 각 Phase의 완료 기준을 태스크 검증 기준으로 그대로 사용한다. Notion 목록/필터 API는 항상 Status=발행됨 필터를 적용해 초안 노출을 막는다. 컴포넌트는 기존 add-component.md 템플릿(interface {Name}Props + 함수형 컴포넌트, Tailwind 클래스)을 재사용한다. shrimp-rules.md의 MVP 제외 범위(댓글/좋아요/다크모드/i18n/어드민)는 구현하지 않는다. 총 15개 태스크를 두 배치로 제출한다: 1차 배치(Phase1~3, 9개), 2차 배치(Phase4~5, 6개)."
+    },
+    {
+      "id": "d404a9af-5112-4fda-8eb3-abfcc3e51af8",
+      "name": "[Phase4-1] 카테고리 필터링 페이지 구현",
+      "description": "/category/[category] 경로에서 fetchPages 결과를 Category(select) 속성 기준으로 필터링하여 해당 카테고리 글 목록만 표시한다.",
+      "notes": "",
+      "status": "pending",
+      "dependencies": [
+        {
+          "taskId": "f3c4ea76-2707-4b97-9b40-5333a8889cdf"
+        }
+      ],
+      "createdAt": "2026-08-13T00:28:24.093Z",
+      "updatedAt": "2026-08-13T00:28:24.093Z",
+      "relatedFiles": [
+        {
+          "path": "src/app/category/[category]/page.tsx",
+          "type": "CREATE",
+          "description": "카테고리별 글 목록 페이지"
+        }
+      ],
+      "implementationGuide": "pseudocode:\nasync function CategoryPage({params}) { const posts = await fetchPages(); const filtered = posts.filter(p => p.category === params.category); return filtered.map(p => <Card post={p}/>) }",
+      "verificationCriteria": "카테고리 선택 시 해당 카테고리 글만 필터링되어 표시되어야 한다.",
+      "analysisResult": "docs/PRD.md와 docs/ROADMAP.md 기반 Notion CMS 개인 개발 블로그 구축. Next.js 15(App Router, src/ 디렉터리) + TypeScript + Tailwind CSS + shadcn/ui + @notionhq/client + Vercel 스택. ROADMAP.md의 Phase1~3(9개 태스크, 1차 배치 완료)에 이어 Phase4(부가 기능)~Phase5(최적화/배포) 6개 태스크를 2차 배치로 추가한다. Phase4는 Phase3의 목록/상세 페이지를 확장하고, Phase5는 Phase2·3·4 전체 산출물에 대한 최적화/배포다."
+    },
+    {
+      "id": "642d7c06-9c29-4bf3-ae69-23916a08a307",
+      "name": "[Phase4-2] 검색 기능 구현",
+      "description": "제목/태그 기준 키워드 검색 기능을 구현한다.",
+      "notes": "",
+      "status": "pending",
+      "dependencies": [
+        {
+          "taskId": "f3c4ea76-2707-4b97-9b40-5333a8889cdf"
+        }
+      ],
+      "createdAt": "2026-08-13T00:28:24.093Z",
+      "updatedAt": "2026-08-13T00:28:24.093Z",
+      "relatedFiles": [
+        {
+          "path": "src/components/SearchBar.tsx",
+          "type": "CREATE",
+          "description": "검색 입력 컴포넌트"
+        },
+        {
+          "path": "src/lib/search.ts",
+          "type": "CREATE",
+          "description": "검색 로직"
+        }
+      ],
+      "implementationGuide": "pseudocode:\nfunction searchPosts(posts: Post[], keyword: string) { return posts.filter(p => p.title.includes(keyword) || p.tags.some(t => t.includes(keyword))) }\n검색 UI 컴포넌트 + 목록 페이지와 연동",
+      "verificationCriteria": "검색어 입력 시 제목/태그 기준으로 일치하는 결과만 표시되어야 한다.",
+      "analysisResult": "docs/PRD.md와 docs/ROADMAP.md 기반 Notion CMS 개인 개발 블로그 구축. Next.js 15(App Router, src/ 디렉터리) + TypeScript + Tailwind CSS + shadcn/ui + @notionhq/client + Vercel 스택. ROADMAP.md의 Phase1~3(9개 태스크, 1차 배치 완료)에 이어 Phase4(부가 기능)~Phase5(최적화/배포) 6개 태스크를 2차 배치로 추가한다. Phase4는 Phase3의 목록/상세 페이지를 확장하고, Phase5는 Phase2·3·4 전체 산출물에 대한 최적화/배포다."
+    },
+    {
+      "id": "2d40441c-bd94-4b3b-aaa9-1f13288f69d1",
+      "name": "[Phase4-3] SEO 최적화",
+      "description": "각 페이지에 title/description/OpenGraph 메타데이터를 설정하고 sitemap.xml, robots.txt를 생성한다.",
+      "notes": "",
+      "status": "pending",
+      "dependencies": [
+        {
+          "taskId": "f3c4ea76-2707-4b97-9b40-5333a8889cdf"
+        },
+        {
+          "taskId": "609e1a27-c319-4e31-9f13-c863ffd6dae2"
+        }
+      ],
+      "createdAt": "2026-08-13T00:28:24.093Z",
+      "updatedAt": "2026-08-13T00:28:24.093Z",
+      "relatedFiles": [
+        {
+          "path": "src/app/sitemap.ts",
+          "type": "CREATE",
+          "description": "sitemap 생성"
+        },
+        {
+          "path": "src/app/robots.ts",
+          "type": "CREATE",
+          "description": "robots.txt 생성"
+        },
+        {
+          "path": "src/app/posts/[slug]/page.tsx",
+          "type": "TO_MODIFY",
+          "description": "generateMetadata 추가"
+        }
+      ],
+      "implementationGuide": "pseudocode:\nexport async function generateMetadata({params}) { return { title, description, openGraph: {...} } }\n// src/app/sitemap.ts, src/app/robots.ts 생성",
+      "verificationCriteria": "각 페이지에 title/description/OG 메타데이터가 설정되고 sitemap.xml/robots.txt가 정상 생성되어야 한다.",
+      "analysisResult": "docs/PRD.md와 docs/ROADMAP.md 기반 Notion CMS 개인 개발 블로그 구축. Next.js 15(App Router, src/ 디렉터리) + TypeScript + Tailwind CSS + shadcn/ui + @notionhq/client + Vercel 스택. ROADMAP.md의 Phase1~3(9개 태스크, 1차 배치 완료)에 이어 Phase4(부가 기능)~Phase5(최적화/배포) 6개 태스크를 2차 배치로 추가한다. Phase4는 Phase3의 목록/상세 페이지를 확장하고, Phase5는 Phase2·3·4 전체 산출물에 대한 최적화/배포다."
+    },
+    {
+      "id": "ece39f41-ce3a-4dc5-9b85-4e09e60a8c6b",
+      "name": "[Phase5-1] 이미지 최적화 및 ISR 캐싱 적용",
+      "description": "next/image로 이미지 최적화를 적용하고, fetchPages/fetchPageContent 호출에 ISR(재검증 주기) 또는 On-demand Revalidation을 적용해 Notion API 호출 빈도를 최소화한다.",
+      "notes": "PRD 9번 리스크(Notion API Rate Limit) 대응 단계.",
+      "status": "pending",
+      "dependencies": [
+        {
+          "taskId": "87534521-3f3a-45e4-beea-1e0c3d058a1c"
+        },
+        {
+          "taskId": "f3c4ea76-2707-4b97-9b40-5333a8889cdf"
+        },
+        {
+          "taskId": "609e1a27-c319-4e31-9f13-c863ffd6dae2"
+        }
+      ],
+      "createdAt": "2026-08-13T00:28:24.093Z",
+      "updatedAt": "2026-08-13T00:28:24.093Z",
+      "relatedFiles": [
+        {
+          "path": "src/app/page.tsx",
+          "type": "TO_MODIFY",
+          "description": "revalidate 설정 및 next/image 적용"
+        },
+        {
+          "path": "src/app/posts/[slug]/page.tsx",
+          "type": "TO_MODIFY",
+          "description": "revalidate 설정 및 next/image 적용"
+        }
+      ],
+      "implementationGuide": "pseudocode:\n<Image src=... /> 로 교체\nexport const revalidate = N (초 단위) 페이지 레벨에 설정, 또는 fetch 옵션 { next: { revalidate: N } }",
+      "verificationCriteria": "이미지가 next/image로 최적화되어 로드되고, 설정한 재검증 주기 내에 Notion 변경사항이 반영되어야 한다.",
+      "analysisResult": "docs/PRD.md와 docs/ROADMAP.md 기반 Notion CMS 개인 개발 블로그 구축. Next.js 15(App Router, src/ 디렉터리) + TypeScript + Tailwind CSS + shadcn/ui + @notionhq/client + Vercel 스택. ROADMAP.md의 Phase1~3(9개 태스크, 1차 배치 완료)에 이어 Phase4(부가 기능)~Phase5(최적화/배포) 6개 태스크를 2차 배치로 추가한다. Phase4는 Phase3의 목록/상세 페이지를 확장하고, Phase5는 Phase2·3·4 전체 산출물에 대한 최적화/배포다."
+    },
+    {
+      "id": "8a666136-9088-4ee3-bb3e-a896d30ff7aa",
+      "name": "[Phase5-2] 반응형 디자인 점검",
+      "description": "모바일/태블릿/데스크톱 브레이크포인트에서 전체 페이지(목록/상세/카테고리/검색) 레이아웃이 깨지지 않는지 점검하고 필요한 Tailwind 반응형 클래스를 보완한다.",
+      "notes": "",
+      "status": "pending",
+      "dependencies": [
+        {
+          "taskId": "d404a9af-5112-4fda-8eb3-abfcc3e51af8"
+        },
+        {
+          "taskId": "642d7c06-9c29-4bf3-ae69-23916a08a307"
+        }
+      ],
+      "createdAt": "2026-08-13T00:28:24.093Z",
+      "updatedAt": "2026-08-13T00:28:24.093Z",
+      "relatedFiles": [
+        {
+          "path": "src/app",
+          "type": "TO_MODIFY",
+          "description": "반응형 클래스 보완"
+        }
+      ],
+      "implementationGuide": "pseudocode:\n각 페이지를 sm/md/lg 브레이크포인트로 점검 후 Tailwind 반응형 유틸리티 클래스(sm:, md:, lg:) 보완",
+      "verificationCriteria": "모바일/태블릿/데스크톱 각 브레이크포인트에서 레이아웃이 깨지지 않아야 한다.",
+      "analysisResult": "docs/PRD.md와 docs/ROADMAP.md 기반 Notion CMS 개인 개발 블로그 구축. Next.js 15(App Router, src/ 디렉터리) + TypeScript + Tailwind CSS + shadcn/ui + @notionhq/client + Vercel 스택. ROADMAP.md의 Phase1~3(9개 태스크, 1차 배치 완료)에 이어 Phase4(부가 기능)~Phase5(최적화/배포) 6개 태스크를 2차 배치로 추가한다. Phase4는 Phase3의 목록/상세 페이지를 확장하고, Phase5는 Phase2·3·4 전체 산출물에 대한 최적화/배포다."
+    },
+    {
+      "id": "aa248ca2-685a-463c-88a5-3d3d460942a6",
+      "name": "[Phase5-3] Vercel 배포 및 revalidate 주기 확인",
+      "description": "Vercel에 프로젝트를 배포하고 환경 변수(NOTION_API_KEY, NOTION_DATABASE_ID)를 설정하며, 프로덕션 URL에서 Notion 글 작성/수정 후 revalidate 주기 내 반영을 확인한다.",
+      "notes": "배포는 사용자 계정/과금이 걸린 작업이므로 실행 전 사용자 확인을 받는다.",
+      "status": "pending",
+      "dependencies": [
+        {
+          "taskId": "ece39f41-ce3a-4dc5-9b85-4e09e60a8c6b"
+        }
+      ],
+      "createdAt": "2026-08-13T00:28:24.093Z",
+      "updatedAt": "2026-08-13T00:28:24.093Z",
+      "relatedFiles": [
+        {
+          "path": "docs/ROADMAP.md",
+          "type": "REFERENCE",
+          "description": "Phase5 완료 기준"
+        }
+      ],
+      "implementationGuide": "pseudocode:\nVercel 프로젝트 연결 → 환경 변수 등록 → 배포 → 프로덕션에서 Notion 글 수정 후 반영 시간 측정",
+      "verificationCriteria": "Vercel 프로덕션 URL에서 정상 동작하고, Notion 글 작성/수정 후 재검증 주기 내에 블로그에 반영되어야 한다.",
+      "analysisResult": "docs/PRD.md와 docs/ROADMAP.md 기반 Notion CMS 개인 개발 블로그 구축. Next.js 15(App Router, src/ 디렉터리) + TypeScript + Tailwind CSS + shadcn/ui + @notionhq/client + Vercel 스택. ROADMAP.md의 Phase1~3(9개 태스크, 1차 배치 완료)에 이어 Phase4(부가 기능)~Phase5(최적화/배포) 6개 태스크를 2차 배치로 추가한다. Phase4는 Phase3의 목록/상세 페이지를 확장하고, Phase5는 Phase2·3·4 전체 산출물에 대한 최적화/배포다."
+    }
+  ]
+}
